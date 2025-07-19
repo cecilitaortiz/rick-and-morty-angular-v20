@@ -1,23 +1,38 @@
 import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { ApiResponse, Character } from '../models/character';
 
 @Injectable({
   providedIn: 'root'
 })
 export class Api {
-  private readonly API_URL = ''; 
+  private readonly API_URL: string = 'https://rickandmortyapi.com/api/character'; 
 
-  private charactersSignal: any; // Define esto como una señal<Character[]>
+  private readonly http = inject(HttpClient);
 
-  public readonly characters: any; // Define esto como una señal de solo lectura
+  private charactersSignal = signal<Character[]>([]);
+
+  public readonly characters = this.charactersSignal.asReadonly();
 
   getCharacters(): Observable<ApiResponse> {
-    throw new Error('Método no implementado');
+    return this.http.get<ApiResponse>(this.API_URL).pipe(
+      tap(response => {
+        this.charactersSignal.set(response.results);
+      })
+    );
   }
 
   searchCharacters(name: string): Observable<ApiResponse> {
-    throw new Error('Método no implementado');
+    if (!name.trim()) {
+      return this.getCharacters();
+    }
+    const searchUrl = `${this.API_URL}?name=${encodeURIComponent(name)}`;
+    return this.http.get<ApiResponse>(searchUrl).pipe(
+      tap(response => {
+        this.charactersSignal.set(response.results);
+      })
+    );
   }
 }

@@ -1,0 +1,99 @@
+.character-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  background: #1b2e1b;
+  color: #39ff14;
+  font-family: 'Trebuchet MS', 'Comic Sans MS', sans-serif;
+}
+
+.search-container {
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+input, button {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 2px solid #39ff14;
+  background: #222;
+  color: #39ff14;
+  font-size: 1rem;
+}
+
+button {
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: #39ff14;
+  color: #222;
+}
+
+.loading-state, .error-state, .empty-state {
+  margin: 1rem 0;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  background: rgba(57, 255, 20, 0.1);
+  color: #39ff14;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.character-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.character-card {
+  background: #222;
+  border: 2px solid #39ff14;
+  border-radius: 16px;
+  padding: 1rem;
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 0 16px #39ff1488;
+  transition: transform 0.2s;
+}
+
+.character-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 32px #39ff14cc;
+}
+
+.character-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid #39ff14;
+  margin-bottom: 1rem;
+  object-fit: cover;
+  background: #111;
+}
+
+.character-info {
+  text-align: center;
+}
+
+.character-info h3 {
+  margin: 0.5rem 0;
+  color: #39ff14;
+  font-size: 1.3rem;
+}
+
+.character-info p {
+  margin: 0.2rem 0;
+  color: #baffc9;
+  font-size: 1rem;
+}
